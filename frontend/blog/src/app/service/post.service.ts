@@ -13,4 +13,8 @@ export class PostService {
   public getPosts(): Observable<Post[]> { // <--- THIS WAS MODIFIED
     return this.http.get<Post[]>('http://localhost:3000/posts')
   }
+
+  public postMensagem(post: Post):Observable<Post>{
+    return this.http.post<Post>('http://localhost:3000/posts', post)
+  }
 }

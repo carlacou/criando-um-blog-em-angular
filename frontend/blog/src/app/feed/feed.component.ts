@@ -8,6 +8,7 @@ import { Post } from '../model/Post';
 })
 export class FeedComponent implements OnInit {
     listPost: Post[] = [];
+    post: Post = new Post;
 
   constructor(private postService: PostService) {
     this.listPost = []
@@ -21,6 +22,13 @@ export class FeedComponent implements OnInit {
     this.postService.getPosts().subscribe((data: Post[])=>{
       this.listPost = data;
     });
+  }
+
+  cadastrarMensagem() {
+    this.postService.postMensagem(this.post).subscribe((data: Post) => {
+      this.post = data;
+      location.assign('/feed')
+    })
   }
 
 }
